@@ -9,7 +9,7 @@ import {
 import { redirect } from "@remix-run/node";
 import MyTable from "~/components/TableForm";
 
-export default function AddGameType() {
+export default function EditTable() {
   return (
     <>
       <h1 className="flex justify-center text-center py-5 text-2xl">

@@ -154,3 +154,102 @@ export async function deleteTable(id: any) {
     return;
   }
 }
+export async function getWaitingList() {
+  try {
+    const waitingList = await prisma.waitingList.findMany({
+      orderBy: { gameType: "asc" },
+    });
+    return waitingList;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
+export async function addWaitingList(data: WaitingList) {
+  try {
+    return await prisma.waitingList.create({
+      data: {
+        gameType: data.gameType,
+        open: data.open,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to add waiting list.");
+  }
+}
+
+export interface WaitingList {
+  gameType: string;
+  open: boolean;
+}
+
+export async function updateWaitingList(id: any, data: WaitingList) {
+  try {
+    const waitingList = await prisma.waitingList.update({
+      where: { id },
+      data: {
+        gameType: data.gameType,
+        open: data.open,
+      },
+    });
+    return waitingList;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
+
+export async function deleteWaitingList(id: any) {
+  try {
+    const waitingList = await prisma.waitingList.delete({
+      where: { id },
+    });
+    return waitingList;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
+
+export async function getWaitingListOne(id: any) {
+  try {
+    const waitingList = await prisma.waitingList.findFirst({ where: { id } });
+    return waitingList;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
+
+export async function closeWaitingLists() {
+  try {
+    // const waitingLists = await prisma.waitingList.findMany({});
+    const waitingList = await prisma.waitingList.updateMany({
+      // where: { id }, // when this opens to more than one user this filter needs to be uncommented
+      data: {
+        open: false,
+      },
+    });
+    return waitingList;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
+
+export async function openWaitingLists() {
+  try {
+    // const waitingLists = await prisma.waitingList.findMany({});
+    const waitingList = await prisma.waitingList.updateMany({
+      // where: { id }, // when this opens to more than one user this filter needs to be uncommented
+      data: {
+        open: true,
+      },
+    });
+    return waitingList;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}

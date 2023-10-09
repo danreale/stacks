@@ -15,9 +15,11 @@ export default function Tables() {
       <div className="flex justify-center">
         <table className="table-auto">
           <thead className="text-2xl">
-            <th className="px-2">Table#</th>
-            <th className="px-2">Seats</th>
-            <th className="px-2">Game</th>
+            <tr>
+              <th className="px-2">Table#</th>
+              <th className="px-2">Seats</th>
+              <th className="px-2">Game</th>
+            </tr>
           </thead>
           <tbody>
             {tables.map((tableData: TableList) => (
