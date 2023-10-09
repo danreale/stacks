@@ -1,0 +1,70 @@
+// ./prisma/schema.prisma
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id       String @id @default(auto()) @map("_id") @db.ObjectId
+    email    String @unique
+    password String
+}
+
+model GameType {
+    id          String        @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    Table       Table[]
+    WaitingList WaitingList[]
+}
+
+model Table {
+    id           String         @id @default(auto()) @map("_id") @db.ObjectId
+    gameType     GameType       @relation(fields: [gameTypeId], references: [id])
+    gameTypeId   String         @db.ObjectId
+    seats        Int
+    tableNumber  Int
+    name         String?
+    TablePlayers TablePlayers[]
+}
+
+model Player {
+    id                String              @id @default(auto()) @map("_id") @db.ObjectId
+    firstName         String
+    lastName          String
+    initials          String
+    phoneNumber       String
+    WaitingListPerson WaitingListPerson[]
+    TablePlayers      TablePlayers[]
+}
+
+model WaitingList {
+    id                String              @id @default(auto()) @map("_id") @db.ObjectId
+    gameType          GameType            @relation(fields: [gameTypeId], references: [id])
+    open              Boolean
+    gameTypeId        String              @db.ObjectId
+    WaitingListPerson WaitingListPerson[]
+}
+
+model WaitingListPerson {
+    id            String      @id @default(auto()) @map("_id") @db.ObjectId
+    waitingList   WaitingList @relation(fields: [waitingListId], references: [id])
+    player        Player      @relation(fields: [playerId], references: [id])
+    waitingListId String      @db.ObjectId
+    playerId      String      @db.ObjectId
+}
+
+model TablePlayers {
+    id         String @id @default(auto()) @map("_id") @db.ObjectId
+    table      Table  @relation(fields: [tableId], references: [id])
+    tableId    String @db.ObjectId
+    player     Player @relation(fields: [playerId], references: [id])
+    playerId   String @db.ObjectId
+    seatNumber Int
+}
