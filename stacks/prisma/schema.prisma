@@ -18,19 +18,15 @@ model User {
 }
 
 model GameType {
-    id          String        @id @default(auto()) @map("_id") @db.ObjectId
-    name        String
-    Table       Table[]
-    WaitingList WaitingList[]
+    id   String @id @default(auto()) @map("_id") @db.ObjectId
+    name String
 }
 
 model Table {
     id           String         @id @default(auto()) @map("_id") @db.ObjectId
-    gameType     GameType       @relation(fields: [gameTypeId], references: [id])
-    gameTypeId   String         @db.ObjectId
+    gameType     String
     seats        Int
     tableNumber  Int
-    name         String?
     TablePlayers TablePlayers[]
 }
 
@@ -46,9 +42,8 @@ model Player {
 
 model WaitingList {
     id                String              @id @default(auto()) @map("_id") @db.ObjectId
-    gameType          GameType            @relation(fields: [gameTypeId], references: [id])
+    gameType          String
     open              Boolean
-    gameTypeId        String              @db.ObjectId
     WaitingListPerson WaitingListPerson[]
 }
 

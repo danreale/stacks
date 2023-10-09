@@ -1,37 +1,15 @@
 import { ActionFunctionArgs } from "@remix-run/node";
-import { Form, useNavigation } from "@remix-run/react";
 import { addGameType, GameType } from "~/data/stacks.server";
 import { redirect } from "@remix-run/node";
+import GameTypeForm from "~/components/GameTypeForm";
 
 export default function AddGameType() {
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state !== "idle";
   return (
     <>
-      <h1 className="flex justify-center text-center py-5">
-        Add Game Type Page
+      <h1 className="flex justify-center text-center py-5 text-2xl">
+        Add Game Type
       </h1>
-      <div className="flex justify-center text-center">
-        <Form
-          method="post"
-          className="grid justify-center items-center text-center space-y-2"
-        >
-          <label>Game Type</label>
-          <div className="space-x-2">
-            <input
-              type="text"
-              className="border-2 border-green-700"
-              name="name"
-            />
-          </div>
-
-          <div>
-            <button disabled={isSubmitting} className="px-1 border-2 rounded">
-              {isSubmitting ? "Saving..." : "Add"}
-            </button>
-          </div>
-        </Form>
-      </div>
+      <GameTypeForm />
     </>
   );
 }
