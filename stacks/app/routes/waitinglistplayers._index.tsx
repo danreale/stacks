@@ -123,7 +123,7 @@ export default function WaitingListPlayers() {
                       id="initials"
                       value={tableData.initials}
                     />
-                    <button className="border-2 boreder-red-500 rounded px-2">
+                    <button className="border-2 boreder-blue-500 rounded px-2">
                       {" "}
                       {isSubmitting ? "Contacting..." : "Contact"}
                     </button>

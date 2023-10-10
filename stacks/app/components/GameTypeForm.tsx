@@ -35,7 +35,10 @@ export default function GameTypeForm() {
           </div>
 
           <div>
-            <button disabled={isSubmitting} className="px-1 border-2 rounded">
+            <button
+              disabled={isSubmitting}
+              className="px-1 border-2 rounded border-blue-500"
+            >
               {isSubmitting ? "Saving..." : gameTypeData ? "Update" : "Add"}
             </button>
           </div>

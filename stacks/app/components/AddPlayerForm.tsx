@@ -33,7 +33,7 @@ export default function WaitingListForm() {
             id="game"
             name="gameType"
             onChange={handleChangeGame}
-            className="border-2 border-white rounded text-center w-80"
+            className="border-2 border-green-700 rounded text-center w-80"
             defaultValue={game}
           >
             {waitingListGames.map((game: WaitingListFull) => {
@@ -87,7 +87,10 @@ export default function WaitingListForm() {
           </div>
 
           <div>
-            <button disabled={isSubmitting} className="px-1 border-2 rounded">
+            <button
+              disabled={isSubmitting}
+              className="px-1 border-2 rounded border-blue-500"
+            >
               {isSubmitting ? "Joining..." : "Join Waiting List"}
             </button>
           </div>
