@@ -1,8 +1,10 @@
-import { NavLink } from "@remix-run/react";
+import { NavLink, Link } from "@remix-run/react";
 export default function Header() {
   return (
     <header className="px-2">
-      <h1 className="flex justify-center text-center py-5">Stacks</h1>
+      <h1 className="flex justify-center text-center py-5 text-4xl">
+        <Link to="/">Stacks</Link>
+      </h1>
       <nav>
         <h1 className="text-center text-2xl pb-2">Admin Links</h1>
         <ul className="flex justify-center items-center text-center space-x-5">
