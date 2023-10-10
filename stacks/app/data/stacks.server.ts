@@ -344,3 +344,16 @@ export async function getPlayersListCount() {
     return;
   }
 }
+
+export async function getTablesCount() {
+  try {
+    const tablesCount = await prisma.table.groupBy({
+      by: ["gameType"],
+      _count: { gameType: true },
+    });
+    return tablesCount;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}

@@ -23,7 +23,7 @@ export default function WaitingListPlayers() {
   return (
     <>
       <div className="flex justify-center text-center py-5">
-        <h1 className="text-2xl">Waiting List Players</h1>
+        <h1 className="text-2xl">Waiting List</h1>
       </div>
       <div className="flex justify-center py-5">
         <table className="table-auto">

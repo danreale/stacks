@@ -12,6 +12,16 @@ export default function GameTypes() {
       <div className="flex justify-center text-center py-5">
         <h1 className="text-2xl">Game Types</h1>
       </div>
+      <div className="flex justify-center text-center pt-2 pb-5">
+        <Link to="add" className="">
+          <img
+            src="../images/poker-table (1).png"
+            alt="pokerchip"
+            className="h-12 w-12"
+          />
+          Add Game
+        </Link>
+      </div>
       <ul className="flex-col justify-center text-center space-y-5">
         {gameTypes.map((gameType: GameTypeList) => (
           <li key={gameType.id} className="space-x-2">

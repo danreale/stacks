@@ -12,7 +12,7 @@ export default function AddPlayerToWaitingList() {
   return (
     <>
       <h1 className="flex justify-center text-center py-5 text-2xl">
-        Add Player To Waiting List
+        Join Waiting List
       </h1>
       <AddPlayerForm />
     </>
@@ -45,5 +45,5 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export const loader = async ({}: LoaderFunctionArgs) => {
   const waitingListGames = await getOpenWaitingListGames();
-  return { waitingListGames };
+  return waitingListGames;
 };

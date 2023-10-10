@@ -19,6 +19,17 @@ export default function WaitingList() {
         <h1 className="text-2xl">Waiting List</h1>
       </div>
 
+      <div className="flex justify-center text-center pt-2 pb-5">
+        <Link to="add" className="">
+          <img
+            src="../images/poker-table (1).png"
+            alt="pokerchip"
+            className="h-12 w-12"
+          />
+          Add Game To Waiting List
+        </Link>
+      </div>
+
       <div className="flex justify-center">
         <table className="table-auto">
           <thead className="text-2xl">

@@ -12,7 +12,7 @@ export default function WaitingListPlayers() {
   return (
     <>
       <div className="flex justify-center text-center py-5">
-        <h1 className="text-2xl">Waiting List Players</h1>
+        <h1 className="text-2xl">Waiting List</h1>
       </div>
       <div className="flex justify-center py-5">
         <table className="table-auto">
@@ -23,10 +23,10 @@ export default function WaitingListPlayers() {
             </tr>
           </thead>
           <tbody>
-            {gameCount.map((tableData: any, index: number) => (
+            {gameCount.map((gameData: any, index: number) => (
               <tr key={index} className="text-center">
-                <td>{tableData.gameType}</td>
-                <td>{tableData._count.gameType}</td>
+                <td>{gameData.gameType}</td>
+                <td>{gameData._count.gameType}</td>
               </tr>
             ))}
           </tbody>
@@ -59,5 +59,6 @@ export default function WaitingListPlayers() {
 export const loader = async ({}: LoaderFunctionArgs) => {
   const gameCount = await getPlayersListCount();
   const playersList = await getPlayersListPublic();
+
   return { gameCount, playersList };
 };

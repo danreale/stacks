@@ -10,19 +10,10 @@ export default function Header() {
             <NavLink to="/tables">Tables</NavLink>
           </li>
           <li>
-            <NavLink to="/tables/add">Add Table</NavLink>
-          </li>
-          <li>
             <NavLink to="/gametypes">Game Types</NavLink>
           </li>
           <li>
-            <NavLink to="/gametypes/add">Add Game Type</NavLink>
-          </li>
-          <li>
             <NavLink to="/waitinglist">Waiting List</NavLink>
-          </li>
-          <li>
-            <NavLink to="/waitinglist/add">Add Waiting List</NavLink>
           </li>
           <li>
             <NavLink to="/waitinglistplayers">Waiting List Players</NavLink>
@@ -38,9 +29,7 @@ export default function Header() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/waitinglistplayers/add">
-              Add Player To Waiting List
-            </NavLink>
+            <NavLink to="/waitinglistplayers/add">Join Waiting List</NavLink>
           </li>
         </ul>
       </nav>
