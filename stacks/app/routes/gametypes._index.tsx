@@ -10,7 +10,7 @@ export default function GameTypes() {
   return (
     <>
       <div className="flex justify-center text-center py-5">
-        <h1>Game Types</h1>
+        <h1 className="text-2xl">Game Types</h1>
       </div>
       <ul className="flex-col justify-center text-center space-y-5">
         {gameTypes.map((gameType: GameTypeList) => (

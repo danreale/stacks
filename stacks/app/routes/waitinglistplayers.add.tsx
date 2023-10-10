@@ -1,7 +1,12 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import { addPlayer, getGameTypes, PLAYER } from "~/data/stacks.server";
+import {
+  addPlayer,
+  getOpenWaitingListGames,
+  PLAYER,
+} from "~/data/stacks.server";
 import { redirect } from "@remix-run/node";
 import AddPlayerForm from "~/components/AddPlayerForm";
+import { json } from "@remix-run/node";
 
 export default function AddPlayerToWaitingList() {
   return (
@@ -26,16 +31,19 @@ export async function action({ request }: ActionFunctionArgs) {
     lastName: playerData.lastName.toString(),
     initials: `${fnInitial}${flnInitial}`,
     phoneNumber: playerData.phoneNumber.toString(),
+    gameType: playerData.gameType.toString(),
   };
   try {
-    await addPlayer(data);
-    return redirect("/waitinglistplayers");
+    const player = await addPlayer(data);
+    console.log(player);
+    // return redirect("/waitinglistplayers");
+    return json({ message: player });
   } catch (error) {
     return error;
   }
 }
 
 export const loader = async ({}: LoaderFunctionArgs) => {
-  const gameTypes = await getGameTypes();
-  return { gameTypes };
+  const waitingListGames = await getOpenWaitingListGames();
+  return { waitingListGames };
 };

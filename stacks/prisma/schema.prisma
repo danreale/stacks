@@ -36,6 +36,7 @@ model Player {
     lastName          String
     initials          String
     phoneNumber       String
+    gameType          String
     WaitingListPerson WaitingListPerson[]
     TablePlayers      TablePlayers[]
 }

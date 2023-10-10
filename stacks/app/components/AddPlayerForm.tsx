@@ -1,9 +1,16 @@
-import { Form, useNavigation, useLoaderData } from "@remix-run/react";
+import {
+  Form,
+  useNavigation,
+  useLoaderData,
+  useActionData,
+  Link,
+} from "@remix-run/react";
 import { useState } from "react";
-import { GameTypeList } from "~/data/stacks.server";
+import { WaitingListFull } from "~/data/stacks.server";
 
 export default function WaitingListForm() {
-  const { gameTypes } = useLoaderData();
+  const data = useActionData<typeof action>();
+  const { waitingListGames } = useLoaderData();
   const navigation = useNavigation();
   const isSubmitting = navigation.state !== "idle";
 
@@ -29,10 +36,10 @@ export default function WaitingListForm() {
             className="border-2 border-white rounded text-center w-80"
             defaultValue={game}
           >
-            {gameTypes.map((game: GameTypeList) => {
+            {waitingListGames.map((game: WaitingListFull) => {
               return (
-                <option key={game.id} value={game.name}>
-                  {game.name}
+                <option key={game.id} value={game.gameType}>
+                  {game.gameType}
                 </option>
               );
             })}
@@ -74,6 +81,8 @@ export default function WaitingListForm() {
               name="phoneNumber"
               placeholder="Phone Number"
               required
+              maxLength={10}
+              pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
             />
           </div>
 
@@ -82,6 +91,21 @@ export default function WaitingListForm() {
               {isSubmitting ? "Joining..." : "Join Waiting List"}
             </button>
           </div>
+
+          {data && (
+            <div className="flex-col justify-center text-center">
+              <p className="text-green-800 py-1">{`You have been added to the waiting list!`}</p>
+              <p className="text py-1">{`Please save this confirmation id.`}</p>
+              <p className="text py-1">{`You will need to present this to the manager.`}</p>
+              <p className="text-red-500 py-10">{`${data.message}`}</p>
+              <Link
+                to="/waitinglistplayers/public"
+                className="underline text-blue-500"
+              >
+                View Waiting List
+              </Link>
+            </div>
+          )}
         </Form>
       </div>
     </>

@@ -16,7 +16,7 @@ export default function WaitingList() {
   return (
     <>
       <div className="flex justify-center text-center py-5">
-        <h1>Waiting List</h1>
+        <h1 className="text-2xl">Waiting List</h1>
       </div>
 
       <div className="flex justify-center">

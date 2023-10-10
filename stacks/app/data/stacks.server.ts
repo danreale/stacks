@@ -165,6 +165,18 @@ export async function getWaitingList() {
     return;
   }
 }
+export async function getOpenWaitingListGames() {
+  try {
+    const waitingList = await prisma.waitingList.findMany({
+      where: { open: true },
+      orderBy: { gameType: "asc" },
+    });
+    return waitingList;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
 export async function addWaitingList(data: WaitingList) {
   try {
     return await prisma.waitingList.create({
@@ -180,6 +192,11 @@ export async function addWaitingList(data: WaitingList) {
 }
 
 export interface WaitingList {
+  gameType: string;
+  open: boolean;
+}
+export interface WaitingListFull {
+  id: any;
   gameType: string;
   open: boolean;
 }
@@ -259,17 +276,20 @@ export interface PLAYER {
   lastName: string;
   initials: string;
   phoneNumber: string;
+  gameType: string;
 }
 export async function addPlayer(data: PLAYER) {
   try {
-    return await prisma.player.create({
+    const player = await prisma.player.create({
       data: {
         firstName: data.firstName,
         lastName: data.lastName,
         initials: data.initials,
         phoneNumber: data.phoneNumber,
+        gameType: data.gameType,
       },
     });
+    return player.id;
   } catch (error) {
     console.log(error);
     throw new Error("Failed to add player.");
@@ -279,9 +299,46 @@ export async function addPlayer(data: PLAYER) {
 export async function getPlayersList() {
   try {
     const playersList = await prisma.player.findMany({
-      orderBy: { firstName: "asc" },
+      select: { gameType: true, initials: true, id: true },
+      orderBy: { gameType: "asc" },
     });
     return playersList;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
+export async function getPlayersListPublic() {
+  try {
+    const playersList = await prisma.player.findMany({
+      select: { gameType: true, initials: true, id: true },
+      orderBy: { gameType: "asc" },
+    });
+    return playersList;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
+
+export async function deletePlayerFromWaitingList(id: any) {
+  try {
+    const player = await prisma.player.delete({
+      where: { id },
+    });
+    return player;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
+export async function getPlayersListCount() {
+  try {
+    const playersListCount = await prisma.player.groupBy({
+      by: ["gameType"],
+      _count: { gameType: true },
+    });
+    return playersListCount;
   } catch (error) {
     console.log(error);
     return;

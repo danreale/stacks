@@ -43,7 +43,14 @@ export default function GameTypeForm() {
       </div>
       {params.id && (
         <div className="flex justify-center text-center pt-10">
-          <Form method="delete">
+          <Form
+            method="delete"
+            onSubmit={(event) => {
+              if (!confirm("Are you sure?")) {
+                event.preventDefault();
+              }
+            }}
+          >
             <div>
               <button className="border-2 border-red-500 px-2 rounded">
                 {isSubmitting ? "Deleting..." : "Delete"}

@@ -9,7 +9,7 @@ export default function Tables() {
   return (
     <>
       <div className="flex justify-center text-center py-5">
-        <h1>Tables</h1>
+        <h1 className="text-2xl">Tables</h1>
       </div>
 
       <div className="flex justify-center">
