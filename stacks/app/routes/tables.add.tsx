@@ -17,7 +17,6 @@ export default function AddTable() {
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const tableData = Object.fromEntries(formData);
-  console.log(tableData);
   const data: Table = {
     seats: parseInt(tableData.seats.toString()),
     tableNumber: parseInt(tableData.tableNumber.toString()),

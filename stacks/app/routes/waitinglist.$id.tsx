@@ -25,7 +25,6 @@ export async function action({ params, request }: ActionFunctionArgs) {
   if (request.method === "PUT") {
     const formData = await request.formData();
     const waitingListData = Object.fromEntries(formData);
-    console.log(waitingListData);
     const data: WaitingList = {
       gameType: waitingListData.gameType.toString(),
       open: waitingListData.open === "true",

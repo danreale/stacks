@@ -17,7 +17,6 @@ export default function AddGameType() {
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const gameTypeData = Object.fromEntries(formData);
-  console.log(gameTypeData);
   const data: GameType = {
     name: gameTypeData.name.toString(),
   };

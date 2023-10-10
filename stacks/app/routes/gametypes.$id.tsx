@@ -24,7 +24,6 @@ export async function action({ params, request }: ActionFunctionArgs) {
   if (request.method === "PUT") {
     const formData = await request.formData();
     const gameTypeData = Object.fromEntries(formData);
-    console.log(gameTypeData);
     const data: GameType = {
       name: gameTypeData.name.toString(),
     };

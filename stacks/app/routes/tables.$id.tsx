@@ -25,7 +25,6 @@ export async function action({ params, request }: ActionFunctionArgs) {
   if (request.method === "PUT") {
     const formData = await request.formData();
     const tableData = Object.fromEntries(formData);
-    console.log(tableData);
     const data: Table = {
       gameType: tableData.gameType.toString(),
       seats: parseInt(tableData.seats.toString()),

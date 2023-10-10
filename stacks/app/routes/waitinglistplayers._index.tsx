@@ -148,7 +148,6 @@ export async function action({ request }: ActionFunctionArgs) {
   if (request.method === "DELETE") {
     const formData = await request.formData();
     const playerData = Object.fromEntries(formData);
-    console.log(playerData);
     try {
       await deletePlayerFromWaitingList(playerData.id);
       return json({
@@ -161,7 +160,6 @@ export async function action({ request }: ActionFunctionArgs) {
   if (request.method === "POST") {
     const formData = await request.formData();
     const playerData = Object.fromEntries(formData);
-    console.log(playerData);
     return json({
       message: `${playerData.initials} for ${playerData.gameType} has been contacted successfully!`,
     });

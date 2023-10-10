@@ -11,7 +11,6 @@ import { WaitingListFull } from "~/data/stacks.server";
 export default function WaitingListForm() {
   const data = useActionData<typeof action>();
   const waitingListGames = useLoaderData();
-  console.log(waitingListGames);
   const waitingListOpen = waitingListGames.length > 0 ? true : false;
   const navigation = useNavigation();
   const isSubmitting = navigation.state !== "idle";

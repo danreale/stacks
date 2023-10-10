@@ -22,7 +22,6 @@ export default function AddPlayerToWaitingList() {
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const playerData = Object.fromEntries(formData);
-  console.log(playerData);
 
   const fnInitial = playerData.firstName.toString().charAt(0).toUpperCase();
   const flnInitial = playerData.lastName.toString().charAt(0).toUpperCase();
@@ -35,7 +34,6 @@ export async function action({ request }: ActionFunctionArgs) {
   };
   try {
     const player = await addPlayer(data);
-    console.log(player);
     // return redirect("/waitinglistplayers");
     return json({ message: player });
   } catch (error) {
