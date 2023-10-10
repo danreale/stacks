@@ -253,3 +253,37 @@ export async function openWaitingLists() {
     return;
   }
 }
+
+export interface PLAYER {
+  firstName: string;
+  lastName: string;
+  initials: string;
+  phoneNumber: string;
+}
+export async function addPlayer(data: PLAYER) {
+  try {
+    return await prisma.player.create({
+      data: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        initials: data.initials,
+        phoneNumber: data.phoneNumber,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to add player.");
+  }
+}
+
+export async function getPlayersList() {
+  try {
+    const playersList = await prisma.player.findMany({
+      orderBy: { firstName: "asc" },
+    });
+    return playersList;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}

@@ -23,6 +23,14 @@ export default function Header() {
           <li>
             <NavLink to="/waitinglist/add">Add Waiting List</NavLink>
           </li>
+          <li>
+            <NavLink to="/waitinglistplayers">Waiting List Players</NavLink>
+          </li>
+          <li>
+            <NavLink to="/waitinglistplayers/add">
+              Add Player To Waiting List
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </header>
