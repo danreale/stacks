@@ -30,7 +30,7 @@ export default function WaitingListPlayers() {
           <thead className="text-2xl">
             <tr>
               <th className="px-2">Game</th>
-              <th className="px-2">Count</th>
+              <th className="px-2">Waiting</th>
             </tr>
           </thead>
           <tbody>

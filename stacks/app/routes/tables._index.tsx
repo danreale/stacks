@@ -11,22 +11,23 @@ export default function Tables() {
       <div className="flex justify-center text-center py-5">
         <h1 className="text-2xl">Tables</h1>
       </div>
-      <div className="flex justify-center text-center pt-2 pb-5">
+      <div className="flex justify-center text-center items-center pt-2 pb-5">
         <Link to="add" className="">
           <img
             src="../images/poker-table (1).png"
             alt="pokerchip"
-            className="h-12 w-12"
+            className="h-24 w-24"
           />
           Add Table
         </Link>
       </div>
+
       <div className="flex justify-center py-5">
         <table className="table-auto">
           <thead className="text-2xl">
             <tr>
               <th className="px-2">Game</th>
-              <th className="px-2">Count</th>
+              <th className="px-2">Tables</th>
             </tr>
           </thead>
           <tbody>

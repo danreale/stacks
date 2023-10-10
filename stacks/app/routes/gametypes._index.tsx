@@ -17,7 +17,7 @@ export default function GameTypes() {
           <img
             src="../images/poker-table (1).png"
             alt="pokerchip"
-            className="h-12 w-12"
+            className="h-24 w-24"
           />
           Add Game
         </Link>
