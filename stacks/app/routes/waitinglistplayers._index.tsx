@@ -62,7 +62,7 @@ export default function WaitingListPlayers() {
               <tr key={tableData.id} className="text-center">
                 <td>{tableData.gameType}</td>
                 <td>{tableData.initials}</td>
-                <td className="pr-2">{tableData.id}</td>
+                <td className="pr-2">{tableData.id.slice(-10)}</td>
                 <td>
                   <Form
                     method="delete"
