@@ -71,28 +71,31 @@ model TournamentAttributes {
 }
 
 model Tournament {
-    id                   String   @id @default(auto()) @map("_id") @db.ObjectId
-    name                 String
-    date                 DateTime
-    gameType             String
-    buyin                Int
-    registeredPlayers    Int
-    status               String
-    attributes           String[]
-    description          String
-    minimumPlayers       Int
-    maximumPlayers       Int
-    remainingPlayers     Int
-    startingChips        Int
-    blindIncreaseMinutes Int
-    rebuyNumber          Int
-    rebuyCost            Int
-    rebuyChips           Int
-    maximumRebuyChips    Int
-    rebuyTimeMinutes     Int
-    addOnsNumber         Int
-    addOnsCost           Int
-    addOnsChips          Int
+    id                    String             @id @default(auto()) @map("_id") @db.ObjectId
+    name                  String
+    date                  DateTime
+    gameType              String
+    buyin                 Int
+    registeredPlayers     Int
+    status                String
+    attributes            String[]
+    description           String
+    minimumPlayers        Int
+    maximumPlayers        Int
+    remainingPlayers      Int
+    startingChips         Int
+    blindIncreaseMinutes  Int
+    lateRegistrationLevel Int
+    rebuyNumber           Int
+    rebuyCost             Int
+    rebuyChips            Int
+    maximumRebuyChips     Int
+    rebuyTimeMinutes      Int
+    addOnsNumber          Int
+    addOnsCost            Int
+    addOnsChips           Int
+    dealMaking            Boolean
+    TournamentPlayer      TournamentPlayer[]
 }
 
 model TournamentStatus {
@@ -103,4 +106,13 @@ model TournamentStatus {
 model TournamentGameType {
     id   String @id @default(auto()) @map("_id") @db.ObjectId
     name String
+}
+
+model TournamentPlayer {
+    id           String     @id @default(auto()) @map("_id") @db.ObjectId
+    tournament   Tournament @relation(fields: [tournamentId], references: [id])
+    tournamentId String     @db.ObjectId
+    firstName    String
+    lastName     String
+    phoneNumber  String
 }

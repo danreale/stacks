@@ -39,7 +39,7 @@ export default function Header() {
         <h1 className="text-center text-2xl pb-2">Tournaments</h1>
         <ul className="flex justify-center items-center text-center space-x-5">
           <li>
-            <NavLink to="/tournaments">Tournaments</NavLink>
+            <NavLink to="/tournaments">View Tournaments</NavLink>
           </li>
         </ul>
       </nav>
