@@ -10,7 +10,8 @@
     "typecheck": "tsc",
     "add:tournament:models": "ts-node ./migrations/tournament_data.ts",
     "add:tournament:statuses": "ts-node ./migrations/tournament_statuses.ts",
-    "add:tournament:games": "ts-node ./migrations/tournament_games.ts"
+    "add:tournament:games": "ts-node ./migrations/tournament_games.ts",
+    "add:tournaments": "ts-node ./migrations/tournaments.ts"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",

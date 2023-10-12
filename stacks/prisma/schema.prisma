@@ -76,24 +76,24 @@ model Tournament {
     date                  DateTime
     gameType              String
     buyin                 Int
-    registeredPlayers     Int
+    registeredPlayers     Int                @default(0)
     status                String
     attributes            String[]
-    description           String
+    description           String?
     minimumPlayers        Int
-    maximumPlayers        Int
-    remainingPlayers      Int
+    maximumPlayers        Int?
+    remainingPlayers      Int                @default(0)
     startingChips         Int
     blindIncreaseMinutes  Int
     lateRegistrationLevel Int
-    rebuyNumber           Int
-    rebuyCost             Int
-    rebuyChips            Int
-    maximumRebuyChips     Int
-    rebuyTimeMinutes      Int
-    addOnsNumber          Int
-    addOnsCost            Int
-    addOnsChips           Int
+    rebuyNumber           Int?
+    rebuyCost             Int?
+    rebuyChips            Int?
+    maximumRebuyChips     Int?
+    rebuyTimeMinutes      Int?
+    addOnsNumber          Int?
+    addOnsCost            Int?
+    addOnsChips           Int?
     dealMaking            Boolean
     TournamentPlayer      TournamentPlayer[]
 }

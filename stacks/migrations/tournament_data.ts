@@ -18,6 +18,7 @@ async function main() {
       // { name: "Satellite" },
       // { name: "Guaranteed" },
       // { name: "Special Series" },
+      // { name: "Freezeout" },
     ],
   });
 
