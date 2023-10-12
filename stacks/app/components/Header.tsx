@@ -35,6 +35,14 @@ export default function Header() {
           </li>
         </ul>
       </nav>
+      <nav className="py-5">
+        <h1 className="text-center text-2xl pb-2">Tournaments</h1>
+        <ul className="flex justify-center items-center text-center space-x-5">
+          <li>
+            <NavLink to="/tournaments">Tournaments</NavLink>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
