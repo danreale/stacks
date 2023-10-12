@@ -1,6 +1,7 @@
 {
   "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
+    "module": "ES6",
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "isolatedModules": true,
     "esModuleInterop": true,
@@ -17,6 +18,9 @@
     },
 
     // Remix takes care of building everything in `remix build`.
-    "noEmit": true
-  }
+    "noEmit": true,
+  },
+  "ts-node": {
+    "esm": true
+}
 }

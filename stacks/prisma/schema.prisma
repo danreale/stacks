@@ -64,3 +64,24 @@ model TablePlayers {
     playerId   String @db.ObjectId
     seatNumber Int
 }
+
+model TournamentAttributes {
+    id   String @id @default(auto()) @map("_id") @db.ObjectId
+    name String
+}
+
+model Tournament {
+    id         String   @id @default(auto()) @map("_id") @db.ObjectId
+    name       String
+    date       DateTime
+    gameType   String
+    buyin      Int
+    players    Int
+    status     String
+    attributes String[]
+}
+
+model TournamentStatus {
+    id     String @id @default(auto()) @map("_id") @db.ObjectId
+    status String
+}
