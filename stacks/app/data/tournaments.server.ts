@@ -162,3 +162,73 @@ export async function getTournamentGameTypes() {
     return;
   }
 }
+export type Attribute = {
+  id: any;
+  name: string;
+};
+export async function getTournamentAttributes() {
+  try {
+    const tournamentAttributes = await prisma.tournamentAttributes.findMany({});
+    return tournamentAttributes;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
+
+export interface PLAYER {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  tournamentId: string;
+}
+
+export async function registerPlayer(data: PLAYER) {
+  try {
+    const player = await prisma.tournamentPlayer.create({
+      data: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        tournamentId: data.tournamentId,
+        phoneNumber: data.phoneNumber,
+      },
+    });
+    console.log(player.id);
+    return player.id;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to register player.");
+  }
+}
+
+export async function getTournamentPlayerCount(data: PLAYER) {
+  try {
+    const pc = await prisma.tournamentPlayer.aggregate({
+      _count: { tournamentId: true },
+      where: { tournamentId: data.tournamentId },
+    });
+
+    console.log(pc._count.tournamentId);
+    return pc._count.tournamentId;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to get tournament player count.");
+  }
+}
+
+export async function updateTournamentPlayerCount(
+  tournamentId: string,
+  count: number
+) {
+  try {
+    return await prisma.tournament.update({
+      where: { id: tournamentId },
+      data: {
+        registeredPlayers: count,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to update tournament.");
+  }
+}

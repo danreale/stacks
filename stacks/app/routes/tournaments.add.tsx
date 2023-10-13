@@ -1,9 +1,8 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import { addGameType, GameType } from "~/data/stacks.server";
 import { redirect } from "@remix-run/node";
-import GameTypeForm from "~/components/GameTypeForm";
 import {
   addTournament,
+  getTournamentAttributes,
   getTournamentGameTypes,
   getTournamentStatuses,
   TournamentAddEntry,
@@ -24,16 +23,28 @@ export default function AddTournament() {
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const tournamentData = Object.fromEntries(formData);
-  // console.log(tournamentData.time.toString());
+  console.log("Tourny Form Data", tournamentData);
+
+  const attributesA: Array<string> = [];
+  for (const key in tournamentData) {
+    if (tournamentData[key] === "on") {
+      if (key !== "dealMaking") {
+        attributesA.push(key);
+      }
+    }
+  }
+  console.log("Atts", attributesA);
+
   const data: TournamentAddEntry = {
     name: tournamentData.name.toString(),
-    date: new Date(tournamentData.date),
+    date: new Date(tournamentData.date.toString()),
     time: tournamentData.time.toString(),
     gameType: tournamentData.gameType.toString(),
-    buyin: tournamentData.buyin.toString(),
+    buyin: parseInt(tournamentData.buyin.toString()),
     registeredPlayers: parseInt(tournamentData.registeredPlayers.toString()),
-    status: "Announced",
-    attributes: ["6-Handed", "Knock Out", "Freeze Out"],
+    status: tournamentData.status.toString(),
+    // attributes: ["6-Handed", "Knock Out", "Freeze Out"],
+    attributes: attributesA,
     description: tournamentData.description.toString(),
     minimumPlayers: parseInt(tournamentData.minimumPlayers.toString()),
     maximumPlayers: parseInt(tournamentData.maximumPlayers.toString()),
@@ -45,7 +56,7 @@ export async function action({ request }: ActionFunctionArgs) {
     lateRegistrationLevel: parseInt(
       tournamentData.lateRegistrationLevel.toString()
     ),
-    dealMaking: tournamentData.dealMaking === "true",
+    dealMaking: tournamentData.dealMaking === "on",
   };
   try {
     const te = await addTournament(data);
@@ -59,5 +70,6 @@ export async function action({ request }: ActionFunctionArgs) {
 export const loader = async ({}: LoaderFunctionArgs) => {
   const tournamentStatuses = await getTournamentStatuses();
   const tournamentGameTypes = await getTournamentGameTypes();
-  return { tournamentStatuses, tournamentGameTypes };
+  const tournamentAttributes = await getTournamentAttributes();
+  return { tournamentStatuses, tournamentGameTypes, tournamentAttributes };
 };

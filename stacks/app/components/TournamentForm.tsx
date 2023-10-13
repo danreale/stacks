@@ -7,11 +7,12 @@ import {
 import { useState } from "react";
 import { GameTypeList } from "~/data/stacks.server";
 import Checkbox from "./Checkbox";
-import { Status } from "~/data/tournaments.server";
+import { Attribute, Status } from "~/data/tournaments.server";
 
 export default function TournamentForm() {
   const params = useParams();
-  const { tournamentStatuses, tournamentGameTypes } = useLoaderData();
+  const { tournamentStatuses, tournamentGameTypes, tournamentAttributes } =
+    useLoaderData();
   const navigation = useNavigation();
   const isSubmitting = navigation.state !== "idle";
 
@@ -29,6 +30,13 @@ export default function TournamentForm() {
   const handleChangeGame = (e: any) => {
     const gameType = e.target.value;
     setGame(gameType);
+  };
+
+  const [status, setStatus] = useState("Announced");
+
+  const handleChangeStatus = (e: any) => {
+    const status = e.target.value;
+    setStatus(status);
   };
 
   // const [open_cb, setOpenCB] = useState(defaultValues.open);
@@ -92,15 +100,36 @@ export default function TournamentForm() {
               })}
             </select>
           </div>
+
           <div className="flex justify-left text-center space-x-2">
-            <label className="">Status</label>
+            <label className="">Attributes</label>
             <ul>
-              {tournamentStatuses.map((status: Status) => (
-                <li key={status.id}>
-                  <Checkbox label={status.status} id={status.status} />
+              {tournamentAttributes.map((attribute: Attribute) => (
+                <li key={attribute.id}>
+                  <Checkbox label={attribute.name} id={attribute.name} />
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div className="flex justify-left text-center space-x-2">
+            <label className="">Status</label>
+            <select
+              id="status"
+              name="status"
+              onChange={handleChangeStatus}
+              className="border-2 border-green-700 rounded text-center w-80"
+              defaultValue={status}
+              required
+            >
+              {tournamentStatuses.map((status: Status) => {
+                return (
+                  <option key={status.id} value={status.status}>
+                    {status.status}
+                  </option>
+                );
+              })}
+            </select>
           </div>
 
           <div className="flex justify-left text-center space-x-2">
@@ -128,7 +157,7 @@ export default function TournamentForm() {
               type="text"
               className="border-2 border-green-700 rounded"
               name="description"
-              //   defaultValue={defaultValues.name}
+              // defaultValue={""}
             />
           </div>
           <div className="flex justify-left text-center space-x-2">
@@ -156,7 +185,7 @@ export default function TournamentForm() {
               type="number"
               className="border-2 border-green-700 rounded"
               name="remainingPlayers"
-              //   defaultValue={defaultValues.name}
+              defaultValue={0}
             />
           </div>
           <div className="flex justify-left text-center space-x-2">

@@ -11,7 +11,8 @@
     "add:tournament:models": "ts-node ./migrations/tournament_data.ts",
     "add:tournament:statuses": "ts-node ./migrations/tournament_statuses.ts",
     "add:tournament:games": "ts-node ./migrations/tournament_games.ts",
-    "add:tournaments": "ts-node ./migrations/tournaments.ts"
+    "add:tournaments": "ts-node ./migrations/tournaments.ts",
+    "get:players": "ts-node ./migrations/get_tourny_players.ts"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",

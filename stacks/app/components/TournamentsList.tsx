@@ -44,6 +44,19 @@ export default function TournamentList({
                       <Link to={`details/${tournyData.id}`}> View</Link>
                     </button>
                   </td>
+                  {tournamentType !== "Running" &&
+                    tournamentType !== "Complete" && (
+                      <td className="px-4">
+                        {" "}
+                        <button className="border-2 rounded px-2">
+                          {" "}
+                          <Link to={`registration/${tournyData.id}`}>
+                            {" "}
+                            Register
+                          </Link>
+                        </button>
+                      </td>
+                    )}
                 </tr>
               ))}
             </tbody>
