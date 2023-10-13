@@ -117,3 +117,32 @@ model TournamentPlayer {
     lastName     String
     phoneNumber  String
 }
+
+enum ROLE {
+    STACKS
+    ADMIN
+}
+
+model Room {
+    id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    roomName    String      @unique
+    description String
+    address     String
+    city        String
+    state       String
+    zip         String
+    phone       String
+    managerName String
+    RoomAdmin   RoomAdmin[]
+}
+
+model RoomAdmin {
+    id        String @id @default(auto()) @map("_id") @db.ObjectId
+    firstName String
+    lastName  String
+    email     String
+    password  String
+    role      ROLE
+    room      Room   @relation(fields: [roomId], references: [id])
+    roomId    String @db.ObjectId
+}
