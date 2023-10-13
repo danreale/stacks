@@ -1,4 +1,4 @@
-import { ActionFunctionArgs } from "@remix-run/node";
+import { ActionFunctionArgs, redirect } from "@remix-run/node";
 import TournamentRegistrationForm from "~/components/TournamentRegistrationForm";
 import {
   PLAYER,
@@ -23,7 +23,6 @@ export async function action({ request, params }: ActionFunctionArgs) {
   const tournamentId = params.id;
   const formData = await request.formData();
   const registrationData = Object.fromEntries(formData);
-
   const data: PLAYER = {
     firstName: registrationData.firstName.toString(),
     lastName: registrationData.lastName.toString(),

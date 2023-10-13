@@ -232,3 +232,25 @@ export async function updateTournamentPlayerCount(
     throw new Error("Failed to update tournament.");
   }
 }
+
+export interface UPDATE_TOURNAMENT {
+  status: string;
+  remainingPlayers: number;
+}
+export async function updateTournamentStatus(
+  id: string,
+  data: UPDATE_TOURNAMENT
+) {
+  try {
+    return await prisma.tournament.update({
+      where: { id },
+      data: {
+        remainingPlayers: data.remainingPlayers,
+        status: data.status,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to update tournament status.");
+  }
+}

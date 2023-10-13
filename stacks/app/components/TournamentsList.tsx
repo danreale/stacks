@@ -57,6 +57,13 @@ export default function TournamentList({
                         </button>
                       </td>
                     )}
+                  <td className="px-4">
+                    {" "}
+                    <button className="border-2 rounded px-2">
+                      {" "}
+                      <Link to={`admin/${tournyData.id}`}> Admin</Link>
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
