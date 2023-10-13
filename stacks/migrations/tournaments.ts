@@ -6,8 +6,9 @@ async function main() {
   const tournaments = await prisma.tournament.createMany({
     data: [
       {
-        name: "Dans First Tourny",
+        name: "Dans Second Tourny",
         date: new Date("2023-10-05"),
+        time: "14:15",
         gameType: "No Limit Holdem",
         buyin: 125,
         registeredPlayers: 0,

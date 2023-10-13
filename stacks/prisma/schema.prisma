@@ -74,6 +74,7 @@ model Tournament {
     id                    String             @id @default(auto()) @map("_id") @db.ObjectId
     name                  String
     date                  DateTime
+    time                  String
     gameType              String
     buyin                 Int
     registeredPlayers     Int                @default(0)
